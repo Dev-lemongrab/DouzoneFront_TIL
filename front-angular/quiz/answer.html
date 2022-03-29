@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html ng-app="app">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>angular Todo App</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script><!--앵귤러-->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script><!--제이쿼리-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <link href="answer.css" rel="stylesheet">
+</head>
+
+<body >
+
+  <body ng-controller="todoCon">
+    <h1>To-Do List 윤성</h1>
+
+    <form ng-submit="save()">
+      <input type="text" ng-model="taskName">
+      <input type="hidden" ng-model="done" value="">
+      <input type="hidden" ng-model="index" value="">
+      <input type="submit" value="일정추가하기">
+    </form>
+    <br>
+    <hr>
+    <p>총 {{ todos.length }} 개의 일정 &nbsp;&nbsp;<button ng-click="clear()">체크항목삭제</button></p>
+    <ul>
+      <li ng-animate="'animate'" ng-repeat="task in todos | filter:search:strict">
+        <label>
+          <input type="checkbox" ng-model="task.done" class="chk">
+          <span class="done done-{{ task.done }}">{{ task.text }}</span> - 
+          <a href="#" ng-click="edit(task, $index)">수정</a>
+        </label>
+      </li>
+    </ul>
+    <input type="search" ng-model="search.text" placeholder="검색하기">
+  </body>
+
+  <script>
+    let app = angular.module("app",[]);
+    
+    app.controller("todoCon", ($scope)=>{
+
+          $scope.todos = [
+              {
+                text: "학원가기",
+                done: false
+              },
+              {
+                text: "집에서 놀기",
+                done: false
+              },
+              {
+                text: "밥먹기",
+                done: false
+              },
+            ];
+
+      $scope.save = function () {//수정 & 삽입
+        var taskName = $scope.taskName;
+        var done = $scope.done;
+        var index = $scope.index; // !"" == "" => false
+
+        if (!taskName == undefined || !taskName == "") {
+          if (!index == "") { //수정
+            $scope.todos.splice(index, 1, {
+              text: taskName,
+              done: done
+            });
+          } else {
+            $scope.todos.push({
+              text: taskName,
+              done: false
+            });
+          }
+
+          $scope.taskName = $scope.done = $scope.index = "";
+        }
+      };
+
+      $scope.edit = function (task, index) {
+        $scope.taskName = task.text;
+        $scope.done = task.done;
+        $scope.index = index;
+      };
+
+      $scope.remaining = function () {
+        var count = 0;
+
+        angular.forEach($scope.todos, function (task) {
+          count += task.done ? 0 : 1;
+        });
+
+        return count;
+      };
+
+      $scope.clear = function () {
+        var todos = $scope.todos;
+
+        $scope.todos = [];
+
+        angular.forEach(todos, function (task) {
+          if (!task.done) $scope.todos.push(task);
+        });
+      };
+    
+    });
+
+  </script>
+</body>
+
+</html>

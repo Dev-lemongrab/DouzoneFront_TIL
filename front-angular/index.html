@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>angular test</title>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script src="./controllers/myController.js"></script>
+  </head>
+  <body>
+    <div class="card">
+      <div class="card-header">ex03_module_dependency</div>
+
+      <div class="card-body">
+        <div ng-controller="myController">
+          <h1>{{hello}}</h1>
+        </div>
+        <div>Controller Name : {{controllerName}}</div>
+      </div>
+    </div>
+    <div ng-controller="myBoard">
+      <form ng-submit="addBoard()">
+        Title :
+        <input type="text" ng-model="boardListForm.title" autofocus /><br />
+        User : <input type="text" ng-model="boardListForm.writer" /><br />
+        &nbsp;<button type="submit">추가</button>
+      </form>
+      <table border="1">
+        <tr>
+          <td style="width: 50px">No</td>
+          <td style="width: 200px">Title</td>
+          <td style="width: 50px">Name</td>
+          <td style="width: 50px">Remove</td>
+          <td style="width: 50px">Update</td>
+        </tr>
+        <tr ng-repeat="item in boardList">
+          <td style="width: 50px">{{$index+1}}</td>
+          <td style="width: 200px">{{item.title}}</td>
+          <td style="width: 50px">{{item.writer}}</td>
+          <td style="width: 50px">
+            <button type="button" ng-click="remove(item.no)">삭제</button>
+          </td>
+          <td style="width: 50px">
+            <button type="button" ng-click="update(item.no)">수정</button>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </body>
+</html>

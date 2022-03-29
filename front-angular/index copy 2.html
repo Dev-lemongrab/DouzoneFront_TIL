@@ -1,0 +1,44 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>angular test</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>  
+</head>
+<body>
+    <div class="card">
+        <div class="card-header">
+            ex02_module_create_find
+        </div>
+
+        <div class="card-body">
+            <script>
+                //모듈생성
+                //angular.module(1, 2)  1:모듈이름, []
+                var myModule1 = angular.module("myModule", []);  
+
+                // 모듈 찾기
+                var myModule2 = angular.module("myModule");  
+
+                if(myModule1 === myModule2) {
+                    console.log("같은 모듈");
+                } else {
+                    console.log("다른 모듈");
+                }
+            </script>
+        </div>
+    </div>
+</body>
+</html>
+
+
+
