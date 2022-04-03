@@ -15,6 +15,7 @@ function Hello(props) {
                 <h2> 리액트 기본 문법 테스트</h2>
             </div>
         </>
-    );    
+    );
+        
 }
 export default Hello;
