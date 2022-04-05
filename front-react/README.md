@@ -150,7 +150,6 @@
      ````
 - 꼭 사용할 필요는 없지만 협업 시 능률이 좋아진다.
 - PropTypes 종류
-
   1. array : 배열
   2. arrayOf(다른 PropType) : PropType으로 이루어진 배열을 의미.
   3. bool : true, false
@@ -165,10 +164,10 @@
   12. oneOfType([React.PropTypes.string, PropTypes.number]) : 주어진 배열 안의 종류 중 하나
   13. objectOf(React.PropTypes.number) : 객체의 모든 키값이 인자로 주어진 PropType인 객체
 
-  ### 클래스형 컴포넌트에서 props사용하기
+### 클래스형 컴포넌트에서 props사용하기
 
-  - render 함수에서 this.props를 조회하면 됩니다.
-  - ```class MyComponent extends Component {
+- render 함수에서 this.props를 조회하면 됩니다.
+- ````class MyComponent extends Component {
       render() {
           const { name, favoriteNumber, children } = this.props; //비구조화 할당
           return (
@@ -179,9 +178,46 @@
           </div>
           );
       }
-      }
-    ```
+  } ```
+  ````
 
-  ```
-  -
-  ```
+### state
+
+- 컴포넌트 내부에서 바뀔 수 있는 값을 의미합니다.
+- props는 컴포넌트가 사용되는 과정에서 부모 컴포넌트가 설정하는 값
+- 자식 컴포넌트에서 props의 값을 바꿀 수는 없다.
+- 클래스 : state <br> 함수 : useState
+
+### 배열 비구조화 할당
+
+- 배열안에 있는 값을 쉽게 추출할 수 있도록 해주는 문법.
+
+## 🤓 EventHandling
+
+### ❗️ 주의사항
+
+1. 이벤트 이름은 카멜 표기법으로 작성
+2. 이벤트에 실행할 자바스크립트 코드를 전달하는 것이 아니라 함수형태의 값을 전달.
+3. DOM요소에만 이벤트를 설정할 수 있습니다.
+
+### 💡 이벤트 종류
+
+- Clipboard
+- Composition
+- Keyboard
+- Focus
+- Form
+- Mouse
+- Selection
+- Touch
+- UI
+- Wheel
+- Media
+- Image
+- Animation
+- Transition
+
+### 이벤트 실습
+
+- e.target.value 하면 event에서 들어오는 값을 구할 수 있다.
+- state에 input값 담기
