@@ -66,6 +66,7 @@ const EventPractice = () => {
     };
     setForm(nextForm);
   };
+
   const onClick = () => {
     alert(username + ": " + message);
     setForm({
