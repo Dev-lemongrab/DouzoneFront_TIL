@@ -371,3 +371,51 @@ console.log(processed);
 - 쿼리스트링
   - 주소의 뒷부분에 ?이후 키=값을 &으로 구분하는 형태
   - 키워드 겁색, 페이지네이션, 정렬 방식등 조회에 필요한 옵션을 전달할 때 사용
+
+### useNavigate
+
+- 인자로 -1을 넘기면 뒤로가기가 된다.
+- replace라는 옵션을 사용하면 페이지기록에 남기지 않을 수 있습니다.
+- `navigate('/articles', {replace:true});`
+
+### NavLink
+
+- 링크에서 사용하는 경로가 현재 라우트의 경로와 일치하는 경우 특정 스타일 또는 CSS클래스를 적용하는 컴포넌트.
+- 태그 안에 { isActive: boolean }을 파라미터로 전달받는 함수타입의 값을 전달합니다.
+- `<NavLink style={({isActive})=> isActive ? activeStyle:undefined}`
+
+## 🤖 Context API
+
+> 프로젝트 내에서 환경설정, 사용자 정보와 같은 전역적으로 필요한 상태를 관리해아할 때는??
+> 리액트 어플리케이션은 컴포넌트간 데이터를 props로 전달하기 때문에 최상위 APP의 state에 넣어서 관리
+> 따라서 상태관리 라이브러리(리덕스, MobX)를 사용
+
+### 👉 1. Context API 사용법 익히기
+
+- context를 만들때는 createContext 함수를 사용합니다.
+
+#### Consumer
+
+- Consumer컴포넌트를 이용해 전역변수 조회
+- Function as a child, Render Props : `<Consumer>` 사이에 중괄호를 열어서 그안에 함수를 넣었다.
+  - children이 있어야할 자리에 일반 JSX혹은 문자열이 아닌 함수를 전달.
+
+#### Provider
+
+- Context의 value를 변경할 수 있습니다.
+- createContext 함수를 사용할 때는 파라미터로 Context의 기본값을 넣어주었는데 이는 provider를 사용하지 않을 때만 적용됩니다.
+- Provider를 사용할때는 value값을 꼭 명시 해줘야한다는 것을 기억하세요!
+
+#### 동적 Context사용하기
+
+- Context의 value에 무조건 상태값만 있어야하는 것은 아닙니다.
+- 함수전달도 가능
+- 상태는 state로, 함수는 actions로 묶어서 전달.
+
+### 👉 useContext Hook 사용하기
+
+- useContext Hook을 사용하면, 함수컴포넌트에서 Context를 아주 편하게 사용가능.
+
+- children에 함수를 전달하는 Render Props 패턴이 불편하다면, useContext Hook사용해 Context 값 조회 가능.
+
+- 그러나 Hook은 함수형 컴포넌트에서만 사용가능하다는 점을 주의!!
